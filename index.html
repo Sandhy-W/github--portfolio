@@ -3,172 +3,79 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Your Name — E-Portfolio</title>
+  <title>Sandhy E-Portfolio</title>
   <meta name="description" content="E-Portfolio showcasing learning outcomes, professional skills, research, and project evidence." />
   <meta name="color-scheme" content="light dark">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <style>
-    /* ====== CSS VARIABLES ====== */
-    :root {
-      --bg: #ffffff;
-      --text: #101418;
-      --muted: #5b6570;
-      --card: #f7f8fa;
-      --brand: #0f62fe;
-      --brand-2: #0353e9;
-      --border: #e6e8ec;
-      --shadow: 0 10px 30px rgba(16, 20, 24, 0.08);
-      --radius: 16px;
-      --maxw: 1100px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      --sans: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0d1117;
-        --text: #e6edf3;
-        --muted: #9fb2c8;
-        --card: #161b22;
-        --brand: #4c8dff;
-        --brand-2: #6aa4ff;
-        --border: #263041;
-        --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-      }
-    }
-    [data-theme="dark"] {
-      --bg: #0d1117;
-      --text: #e6edf3;
-      --muted: #9fb2c8;
-      --card: #161b22;
-      --brand: #4c8dff;
-      --brand-2: #6aa4ff;
-      --border: #263041;
-      --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-    }
-
-    /* ====== RESET / BASE ====== */
-    html, body { height: 100%; }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--sans);
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    img, svg { max-width: 100%; height: auto; }
-    .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
-    .section { padding: 64px 0; }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 28px;
-    }
-    h1, h2, h3 { line-height: 1.25; margin: 0 0 16px; }
-    h1 { font-size: clamp(28px, 4.5vw, 40px); }
-    h2 { font-size: clamp(22px, 3.5vw, 30px); margin-top: 8px; }
-    h3 { font-size: clamp(18px, 3vw, 22px); }
-    p { margin: 0 0 14px; color: var(--text); }
-    .muted { color: var(--muted); }
-    .grid {
-      display: grid;
-      gap: 20px;
-    }
-    @media (min-width: 900px) {
-      .grid-2 { grid-template-columns: 1.2fr 1fr; }
-      .grid-3 { grid-template-columns: repeat(3, 1fr); }
-    }
-
-    /* ====== NAV ====== */
-    .skip { position: absolute; left: -999px; top: -999px; }
-    .skip:focus { left: 16px; top: 16px; background: var(--brand); color: #fff; padding: 8px 12px; border-radius: 8px; }
-
-    .nav {
-      position: sticky; top: 0; z-index: 40;
-      background: rgba(255,255,255,.7);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-    @media (prefers-color-scheme: dark) {
-      .nav { background: rgba(13,17,23,.6); }
-    }
-    .nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
-    .brand { font-weight: 700; letter-spacing: .2px; }
-    .pill {
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 10px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--border);
-    }
-    .menu { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
-    .menu a { padding: 8px 10px; border-radius: 8px; }
-    .menu a:hover { background: var(--card); text-decoration: none; }
-    .toggle {
-      border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 8px 12px;
-      cursor: pointer;
-    }
-
-    /* ====== HERO ====== */
-    .hero { padding: 56px 0 24px; }
-    .hero .card { display: grid; gap: 16px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 8px; }
-    .badge {
-      font-size: 12px; padding: 6px 10px; border-radius: 999px;
-      background: linear-gradient(180deg, var(--brand), var(--brand-2)); color: #fff;
-      border: 1px solid rgba(255,255,255,.2);
-    }
-
-    /* ====== TABLE ====== */
-    .table-wrap { overflow-x: auto; }
-    table { width: 100%; border-collapse: collapse; font-size: 15px; }
-    th, td { padding: 12px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
-    th { text-align: left; background: rgba(15,98,254,0.06); }
-    code { font-family: var(--mono); font-size: 0.95em; background: var(--card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; }
-
-    /* ====== ASIDE ====== */
-    .aside { border-left: 4px solid var(--brand); padding-left: 14px; color: var(--muted); }
-
-    /* ====== FOOTER ====== */
-    footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); }
-
-    /* ====== PRINT (PDF export) ====== */
-    @media print {
-      .nav, .toggle, .print-hide { display: none !important; }
-      body { background: #fff; color: #000; }
-      .card { box-shadow: none; border: 1px solid #ddd; }
-      a { color: #000; text-decoration: underline; }
-      .section { page-break-inside: avoid; }
-      h1 { page-break-before: always; }
-      h1:first-of-type { page-break-before: auto; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="print.css" media="print">
 </head>
-<body>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Cover date
+  const pd = document.getElementById('print-date');
+  if (pd) pd.textContent = new Date().toLocaleDateString();
+
+  // Page counters for browsers that support it (Chrome does)
+  // These spans will be replaced by CSS counters in print.
+  const pn = document.querySelector('.pageNumber');
+  const tp = document.querySelector('.totalPages');
+  if (pn) pn.textContent = '';
+  if (tp) tp.textContent = '';
+
+  // Print button
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) printBtn.addEventListener('click', (e) => { e.preventDefault(); window.print(); });
+});
+</script>
+<body id="top">
   <a href="#main" class="skip">Skip to content</a>
 
   <!-- NAV -->
   <nav class="nav">
     <div class="container nav-wrap">
-      <div class="brand">Your Name — E-Portfolio</div>
-      <div class="menu">
+      <!-- Replaced text brand with image brand -->
+      <a href="#top" class="brand" aria-label="Home">
+        <span class="sr-only">Sandhy E-Portfolio</span>
+      </a>
+      <div class="menu" id="toolbar">
         <a href="#intro">Introduction</a>
         <a href="#skills">Professional Skills</a>
         <a href="#outcomes">Learning Outcomes</a>
         <a href="#pdp">Development Plan</a>
-        <a href="#resume">Resume</a>
-        <a href="#litreview">Literature Review</a>
         <a href="#appendices">Appendices</a>
-        <a href="#feedback">Feedback</a>
-        <a href="#evidence">Evidence</a>
-        <button class="toggle print-hide" id="themeBtn" aria-label="Toggle dark mode">🌓 Theme</button>
+        <a class="toggle print-hide"
+          href="assests/Sandh_Waer_Resume.pdf"
+          download="Sandhy_Waer_Resume.pdf"
+          aria-label="Download resume as PDF"
+          rel="noopener">⬇ Updated Resume</a>
         <button class="toggle print-hide" id="printBtn" aria-label="Print to PDF">🖨️ PDF</button>
       </div>
     </div>
   </nav>
+
+  <!-- PRINT-ONLY COVER PAGE -->
+<section class="cover print-only">
+  <h1>E-Portfolio</h1>
+  <p><strong>Student:</strong> Sandhy Waer</p>
+  <p><strong>Unit:</strong>Information Science Intership</p>
+  <p><strong>Program:</strong> Master of Network Engineering</p>
+  <p><strong >Email:</strong> u3165828@uni.canberra.edu.au</p>
+  <p><strong>Date:</strong> <span id="print-date"></span></p>
+
+   <!-- bottom logos inside framed rectangles -->
+  <div class="cover-bottom-logos">
+    <div class="logo-frame uc-logo">
+      <img src="logo.png" alt="University of Canberra logo" class="logo-fit">
+      <p>University of Canberra</p>
+    </div>
+    <div class="logo-frame icc-logo">
+      <img src="icc.png" alt="Innovation Central Canberra logo" class="logo-fit">
+      <p>Innovation Central Canberra</p>
+    </div>
+  </div>
+</section>
+
+
 
   <main id="main">
     <!-- HERO / COVER -->
@@ -176,87 +83,84 @@
       <div class="container">
         <div class="card">
           <div>
-            <h1>Industrial Networking E-Portfolio</h1>
-            <p class="muted">Student: <strong>Your Name</strong> · Major: <strong>Your Major</strong> ·
-              <a href="mailto:you@example.com">you@example.com</a> ·
-              <a href="https://www.linkedin.com/in/your-link" target="_blank" rel="noreferrer">LinkedIn</a>
+            <img src="profile.jpg" alt="Profile picture" class="profile-hero print-hide">
+            <h1 class="print-hide">E-Portfolio</h1>
+            <p class="print-hide">Student: <strong>Sandhy Waer</strong> · Area of Study: <strong>Master of Network Engineering</strong> · Contact:
+              <a href="mailto:u3165828@uni.canberra.edu.au"class="print-hide">u3165828@uni.canberra.edu.au</a> ·
+              <a href="https://www.linkedin.com/in/sandhy-waer-a07910236/" target="_blank" rel="noreferrer" class="print-hide">LinkedIn</a>
             </p>
           </div>
           <div class="badges">
-            <span class="badge">Cisco IR1835</span>
-            <span class="badge">Cisco IW9165E</span>
+            <span class="badge">Cisco Hardwares</span>
+            <span class="badge">Cisco Configuration</span>
             <span class="badge">IOS XE</span>
-            <span class="badge">IPSec / IKEv2</span>
-            <span class="badge">Azure Networking</span>
-            <span class="badge">Wi-Fi 6</span>
-            <span class="badge">Kanban</span>
+            <span class="badge">IPSec</span>
+            <span class="badge">SD-WAN</span>
+            <span class="badge">Azure Deployment</span>
+            <span class="badge">Kanban via DevOps</span>
           </div>
-          <p class="aside">This e-portfolio documents research, configuration, and validation of dual
-            connectivity (5G/4G LTE + fast Wi-Fi) for industrial environments using Cisco platforms,
-            with secure cloud integration and continuous reflection.</p>
+          <p class="aside print-hide">
+            This e-portfolio presents my internship journey highlighting the project outcomes,
+            what I learned, the skills I developed, and reflections on my personal growth.</p>
         </div>
       </div>
     </section>
 
     <!-- INTRODUCTION -->
     <section class="section" id="intro">
-      <div class="container grid grid-2">
+      <div class="container">
         <div class="card">
-          <h2>1. Introduction</h2>
+             <h2>1. Introduction</h2>
           <p>
-            This e-portfolio covers my internship work with IPTel/ICC. Objectives:
-            (1) research, configure, and evaluate Cisco IR1835 and IW9165E in lab/field contexts;
-            (2) design a secure, scalable system architecture connecting edge devices to cloud workloads;
-            (3) collect evidence of learning and professional development; and
-            (4) reflect on feedback to guide a sustained five-year plan.
+           Welcome to my internship e-portfolio for ICC. I created this space to share what I have achieved and how the 
+           experience has shaped my skills and goals. I’m an intern with a strong interest in networking and edge 
+           computing devices, and I am motivated by practical problem-solving through hands-on experience.<br>
+           This e-portfolio concentrates on three primary objectives:<br>
+            <ul>
+              <li>Professional skills reflection.</li>
+              <li>Learning outcome fullfillment.</li>
+              <li>Personal development plan.</li><br>
+            </ul>
+          </p>
+          <p>
+            I also use this platform to present my recent <a href="#toolbar">resume</a> that reflects the skills and valuable 
+            knowledge I have gained throughout the program. I also showcase some of the project results, 
+            milestones, and relevant information I accomplished through this program in the appendix.
           </p>
         </div>
-        <div class="card">
-          <h3>At-a-Glance</h3>
-          <ul>
-            <li>Dual connectivity: 5G/4G + Wi-Fi (fast roaming)</li>
-            <li>IR1835 (rugged ISR), IW9165E (industrial Wi-Fi 6)</li>
-            <li>IOS XE research and configuration</li>
-            <li>Cloud VPN head-end (Azure + StrongSwan)</li>
-            <li>Kanban and sprint planning</li>
-          </ul>
-        </div>
-      </div>
+      </div>   
     </section>
 
-    <!-- PROFESSIONAL SKILLS -->
+     <!-- PROFESSIONAL SKILLS -->
     <section class="section" id="skills">
       <div class="container grid grid-2">
         <div class="card">
           <h2>2. Professional Skills Reflection</h2>
           <h3>Communication & Collaboration</h3>
           <ul>
-            <li>DP and IPTel/ICC progress meetings; status, risks, next steps.</li>
-            <li>Translated technical findings (coverage, hardware readiness) for non-technical stakeholders.</li>
+            <li>Actively participate in IPTel/ICC progress meetings: status, risks, and next steps of the project</li>
+            <li>Translated technical findings (project progress and hardware readiness) for non-technical stakeholders.</li>
           </ul>
-          <p class="muted">Reflection: concise demos and risk statements improved cross-team decisions.</p>
+          <p>Reflection:Confident in developing ideas, offering straightforward scenarios to translate technical issues for non-technical team members, 
+            and aiding project progress through decision-making.</p>
 
           <h3>Project & Workflow Management</h3>
           <ul>
             <li>Maintained a Kanban board; aligned tasks with Sprint 3 planning.</li>
-            <li>Prepared test plans, timesheets; tracked dependencies (e.g., common ground cabling).</li>
+            <li>Prepared test plans, timesheets, tracked dependencies</li>
           </ul>
-          <p class="muted">Reflection: visual flow limited WIP and surfaced blockers earlier.</p>
+          <p>Reflection: Constant project meeting to discuss ideas, progress, update, essential finding, and next steps.</p>
         </div>
         <div class="card">
-          <h3>Network & Security Engineering</h3>
+          <h3>Technical Skills</h3>
           <ul>
-            <li>IR1835 IOS XE features, software requirements, install prerequisites.</li>
-            <li>IW9165E client/AP roles, parent AP, roaming strategy.</li>
-            <li>Site-to-site IPSec (AES-256/SHA-256), NAT-T, route/UDR in Azure.</li>
+            <li>Cisco hardware configuration and installation (IR1835, IW9165, AIR AP 3802i, Cat9800v, and Cat8000v).</li>
+            <li> LAN and Cloud deployment (Azure)</li>
+            <li>Testing and troubleshooting</li>
+            <li>Literature review: hardware description and functionalities</li>
+            <li>Documenting and reporting</li>
           </ul>
-          <p class="muted">Reflection: hands-on configuration built confidence with RF trade-offs and edge hardening.</p>
-
-          <h3>Cloud & Validation</h3>
-          <ul>
-            <li>Azure Linux VPN head-end with StrongSwan, verified SAs and throughput (iperf3).</li>
-            <li>Logs/metrics for performance and resilience checks.</li>
-          </ul>
+          <p>Reflection: Set up the initial configuration, install all hardware, carry out testing and troubleshooting, and prepare documentation or reports along the way.</p>
         </div>
       </div>
     </section>
@@ -285,7 +189,7 @@
       </div>
     </section>
 
-    <!-- PERSONAL DEVELOPMENT PLAN -->
+     <!-- PERSONAL DEVELOPMENT PLAN -->
     <section class="section" id="pdp">
       <div class="container">
         <div class="card">
@@ -321,148 +225,83 @@
       </div>
     </section>
 
-    <!-- RESUME HIGHLIGHTS -->
-    <section class="section" id="resume">
-      <div class="container grid grid-2">
-        <div class="card">
-          <h2>5. Resume Highlights</h2>
-          <p><strong>Role:</strong> Industrial Networking Intern (IPTel/ICC)</p>
-          <ul>
-            <li>Reviewed IOS XE & software architecture; compiled IR1835/IW9165E requirements.</li>
-            <li>Designed & validated IPSec IR1835 ↔ Azure; implemented UDR + IP forwarding.</li>
-            <li>Verified 5G/4G LTE coverage; parent AP requirements for IW9165E.</li>
-            <li>Led Sprint 3 planning; maintained Kanban; tracked risks/blocks.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Skills</h3>
-          <p>IOS XE, IR1835/IW9165E, Wi-Fi (AP/WGB), IPSec/IKEv2, Linux/StrongSwan, Azure (NSG/UDR),
-            Iperf3/TCPDump, Kanban.</p>
-          <a class="pill" href="#" target="_blank" rel="noreferrer">Download Full CV (PDF)</a>
-        </div>
-      </div>
-    </section>
+    <!-- (Rest of your sections remain unchanged) -->
+    <!-- PROFESSIONAL SKILLS, LEARNING OUTCOMES, PDP, Resume, Lit Review, Appendices, Feedback, Evidence -->
 
-    <!-- LITERATURE REVIEW TABLE -->
-    <section class="section" id="litreview">
-      <div class="container">
-        <div class="card">
-          <h2>6. Literature Review — Components & Functionality</h2>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Component</th>
-                  <th>Functionality (summary)</th>
-                  <th>Key configuration / notes</th>
-                  <th>Source</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>IR1835 (IOS XE)</strong></td>
-                  <td>Rugged ISR for industrial edge; LTE/5G options; IPSec/SD-WAN.</td>
-                  <td>Verify software reqs; grounding; WAN for crypto map; parent AP interop as needed.</td>
-                  <td><a href="#" target="_blank" rel="noreferrer">Cisco product/config guide</a></td>
-                </tr>
-                <tr>
-                  <td><strong>IW9165E</strong></td>
-                  <td>Industrial Wi-Fi 6 AP; can act as client/bridge or AP; fast roaming.</td>
-                  <td>Requires parent AP in client role; WPA2/3-Enterprise; roaming tuning.</td>
-                  <td><a href="#" target="_blank" rel="noreferrer">Cisco deployment manual</a></td>
-                </tr>
-                <tr>
-                  <td><strong>Azure VPN (DIY)</strong></td>
-                  <td>Linux StrongSwan as VPN head-end in VNet.</td>
-                  <td>IKEv2 AES-256/SHA-256; NAT-T; UDR for return routes; IP forwarding on NIC.</td>
-                  <td><a href="#" target="_blank" rel="noreferrer">StrongSwan/Azure docs</a></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="muted">Replace links with exact URLs to vendor manuals and documents used.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- APPENDICES -->
-    <section class="section" id="appendices">
-      <div class="container grid grid-2">
-        <div class="card">
-          <h2>7. Appendices</h2>
-          <ul>
-            <li>Weekly Summary Report — <a href="#" target="_blank">PDF</a></li>
-            <li>Signed Internship Evaluation — <a href="#" target="_blank">PDF</a></li>
-            <li>Presentation Slides — <a href="#" target="_blank">PPTX</a></li>
-            <li>Config snippets (IR1835/IW9165E), test plans, logs — <a href="#" target="_blank">Repo folder</a></li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>Notes</h3>
-          <p>Keep sensitive information out of the public repo. Use private links or redact.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEEDBACK -->
-    <section class="section" id="feedback">
-      <div class="container grid grid-2">
-        <div class="card">
-          <h2>8. Feedback Review</h2>
-          <p>Mentor feedback summary (communication, documentation quality, problem-solving).
-             Actions taken: clarified CAN Bus scope, confirmed switching needs for IW9165E client/AP,
-             refined CIA security measures; updated Kanban and sprint scope accordingly.</p>
-        </div>
-        <div class="card">
-          <h3>Blocked / Risks</h3>
-          <ul>
-            <li>Common ground cabling identification delayed IR1835 install.</li>
-            <li>Wi-Fi parent AP availability validation pending.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- EVIDENCE -->
-    <section class="section" id="evidence">
-      <div class="container">
-        <div class="card">
-          <h2>9. Evidence & Links</h2>
-          <p>Add screenshots (coverage checks, VPN SAs), diagrams (Visio/draw.io), and repository folders with code/configs.</p>
-          <ul>
-            <li><a href="#" target="_blank" rel="noreferrer">Architecture Diagram</a></li>
-            <li><a href="#" target="_blank" rel="noreferrer">StrongSwan ipsec.conf</a></li>
-            <li><a href="#" target="_blank" rel="noreferrer">IR1835 config snippets</a></li>
-          </ul>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© <span id="y"></span> Your Name. Last updated: <span id="last-updated"></span>.</p>
+        <p>© <span id="y"></span> Sandhy Waer — Last updated: <span id="last-updated"></span></p>
     </div>
   </footer>
 
-  <script>
-    // Dark mode toggle — persists in localStorage
-    const root = document.documentElement;
-    const btn = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('theme');
-    if (saved) root.setAttribute('data-theme', saved);
+
+ <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const root = document.documentElement;
+  const btn  = document.getElementById('themeBtn');
+
+  // Default to LIGHT if nothing saved
+  const saved = localStorage.getItem('theme');      // 'light' | 'dark' | null
+  const theme = saved || 'light';
+
+  applyTheme(theme);
+
+  if (btn) {
     btn.addEventListener('click', () => {
       const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      if (next === 'light') root.removeAttribute('data-theme'); else root.setAttribute('data-theme','dark');
+      applyTheme(next);
       localStorage.setItem('theme', next);
     });
+  }
 
-    // Print to PDF
-    document.getElementById('printBtn').addEventListener('click', () => window.print());
+  function applyTheme(mode) {
+    if (mode === 'dark') {
+      root.setAttribute('data-theme', 'dark');
+      if (btn) {
+        btn.textContent = '🌙 Dark';
+        btn.setAttribute('aria-pressed', 'true');
+      }
+    } else {
+      root.removeAttribute('data-theme'); // light is the base
+      if (btn) {
+        btn.textContent = '🌞 Light';
+        btn.setAttribute('aria-pressed', 'false');
+      }
+    }
+  }
 
-    // Footer dates
-    document.getElementById('y').textContent = new Date().getFullYear();
-    document.getElementById('last-updated').textContent = new Date().toLocaleDateString();
-  </script>
+  // Print to PDF
+  const printBtn = document.getElementById('printBtn');
+  if (printBtn) {
+    printBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.print();
+    });
+  }
+
+  // Footer dates
+  const y = document.getElementById('y');
+  const lu = document.getElementById('last-updated');
+  if (y) y.textContent = new Date().getFullYear();
+  if (lu) lu.textContent = new Date().toLocaleDateString(undefined, {
+    year: 'numeric', month: 'long', day: 'numeric'
+  });
+  // Fill cover date
+  const pd = document.getElementById('print-date');
+  if (pd) pd.textContent = new Date().toLocaleDateString();
+
+
+  // Optional: show a page number footer for browsers without @page margin boxes
+  const fallback = document.createElement('div');
+  fallback.className = 'page-num print-only';
+  fallback.textContent = ''; // left blank—Chrome shows system footer if enabled
+  document.body.appendChild(fallback);
+  
+});
+</script>
+
+
 </body>
 </html>

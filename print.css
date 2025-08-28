@@ -1,0 +1,160 @@
+/* ====== PRINT (Academic PDF) ====== */
+@media print {
+  /* Basics */
+  :root {
+    --print-font: "Times New Roman", Georgia, "Nimbus Roman", serif;
+  }
+
+  html, body {
+    background: #fff !important;
+    color: #000 !important;
+    font-family: var(--print-font) !important;
+    line-height: 1.35 !important;
+    font-size: 11.5pt !important;
+  }
+
+  /* Page box (Chrome/Edge honor margin; Safari uses print dialog) */
+  @page {
+    size: A4;
+    margin: 22mm 18mm 22mm 18mm; /* top right bottom left */
+  }
+
+  /* Hide web-only chrome */
+  .nav,
+  .toggle,
+  .print-hide,
+  .badges,
+  .brand,
+  .menu { display: none !important; }
+
+  /* Containers/cards simplified */
+  .container { max-width: none !important; padding: 0 !important; }
+  .card {
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+  }
+
+  /* Headings & spacing */
+  h1, h2, h3 { color: #000 !important; }
+  h1 { font-size: 26pt; margin: 0 0 8mm; font-weight: 700; }
+  h2 { font-size: 18pt; margin: 10mm 0 4mm; font-weight: 700; }
+  h3 { font-size: 16pt; margin: 6mm 0 2mm; font-weight: 700; }
+  p, li { font-size: 14.5pt; }
+
+  /* Avoid awkward breaks */
+  .section { page-break-inside: avoid; }
+  h1, h2, h3 { page-break-after: avoid; }
+  p, table, ul, ol { page-break-inside: avoid; }
+  img { page-break-inside: avoid; }
+
+  /* Cover page */
+  .print-cover {
+    break-before: page;
+    text-align: left;
+    margin-top: 40mm;
+  }
+  .print-cover h1 { margin-bottom: 10mm; font-size: 28;}
+  .print-cover p { margin: 0 0 3mm; }
+
+  /* Running header & footer */
+  .print-only { display: block !important; }
+  .print-header, .print-footer {
+    position: fixed;
+    left: 0; right: 0;
+    color: #444;
+    font-size: 14pt;
+  }
+  .print-header { top: 10mm; text-align: center; }
+  .print-footer {
+    bottom: 14mm;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 10mm;
+  }
+
+  /* Page numbers via CSS counters */
+  body { counter-reset: page; }
+  .pageNumber:before { content: counter(page); }
+  .totalPages:before { content: counter(pages); }
+
+  /* Make the first real content page start after cover */
+  .hero { break-before: page; margin-top: 0 !important; }
+
+  /* Links render as plain text */
+  a:link, a:visited { color: #000; text-decoration: none; }
+
+  /* Tables: simple, readable */
+  table { width: 100%; border-collapse: collapse; }
+  th, td { border-bottom: 1px solid #bbb; padding: 6pt 4pt; }
+  th { background: #eee; }
+}
+
+/* Utility so these blocks stay hidden on screen */
+@media screen {
+  .print-only { display: none; }
+}
+/* --- Fix cover logos: same size, same baseline, centered --- */
+@media print {
+  /* row that holds both logos */
+  .cover-bottom-logos {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 22mm;                 /* how high from the page bottom */
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;        /* align captions on one baseline */
+    gap: 45mm;                    /* space between the two logos */
+    padding: 0;
+  }
+
+  /* each logo/caption column has the same width */
+  .logo-frame {
+    width: 55mm;                  /* identical columns → tidy captions */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* make both images the SAME rendered height */
+  .logo-frame .logo-fit {
+    height: 22mm;                 /* << adjust this to taste (20–25mm) */
+    max-width: 100%;
+    object-fit: contain;
+    margin: 0 0 3mm;              /* space above the caption */
+  }
+
+  /* keep captions consistent and black */
+  .logo-frame p {
+    margin: 0;
+    font-size: 13pt;
+    color: #000;
+  }
+
+  @media print {
+  /* Common defaults */
+  .logo-frame .logo-fit {
+    object-fit: contain;
+    margin: 0 0 3mm;
+  }
+
+  /* 🎯 Specific controls */
+  .uc-logo .logo-fit {
+    height: 45mm;   /* control UC logo size */
+    width: auto;
+  }
+
+  .icc-logo .logo-fit {
+    height: 30mm;   /* control ICC logo size */
+    width: auto;
+  }
+}
+
+
+  /* If one logo still looks optically off, you can nudge it a hair: */
+  /* .uc-logo .logo-fit { transform: translateY(1mm); }   */
+  /* .icc-logo .logo-fit { transform: translateY(-1mm); } */
+}
+

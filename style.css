@@ -1,0 +1,206 @@
+/* ===== THEME (default = LIGHT, toggle overrides OS) ===== */
+
+/* Light defaults */
+:root {
+  --bg: #ffffff;
+  --text: #101418;
+  --muted: #5b6570;
+  --card: #f7f8fa;
+  --brand: #0f62fe;
+  --brand-2: #0353e9;
+  --border: #e6e8ec;
+  --shadow: 0 10px 30px rgba(16, 20, 24, 0.08);
+  --radius: 16px;
+  --maxw: 1100px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  --sans: system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+/* Use OS dark only if the user hasn’t picked a theme yet */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0d1117;
+    --text: #e6edf3;
+    --muted: #9fb2c8;
+    --card: #161b22;
+    --brand: #4c8dff;
+    --brand-2: #6aa4ff;
+    --border: #263041;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* Explicit DARK (set by the toggle) — this wins over OS */
+:root[data-theme="dark"] {
+  --bg: #0d1117;
+  --text: #e6edf3;
+  --muted: #9fb2c8;
+  --card: #161b22;
+  --brand: #4c8dff;
+  --brand-2: #6aa4ff;
+  --border: #263041;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* Keep the toggle hidden in print */
+.print-hide { display: inline-flex; }
+@media print { .print-hide { display: none !important; } }
+
+/* Nav background should adapt to theme (no OS media query needed) */
+.nav { background: rgba(255, 255, 255, 0.7); }
+:root[data-theme="dark"] .nav { background: rgba(13, 17, 23, 0.6); }
+
+
+[data-theme="dark"] {
+  --bg: #0d1117;
+  --text: #e6edf3;
+  --muted: #9fb2c8;
+  --card: #161b22;
+  --brand: #4c8dff;
+  --brand-2: #6aa4ff;
+  --border: #263041;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+/* ====== RESET / BASE ====== */
+html, body { height: 100%; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+a { color: var(--brand); text-decoration: none; }
+a:hover { text-decoration: underline; }
+img, svg { max-width: 100%; height: auto; }
+.container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 20px; }
+.section { padding: 64px 0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 28px;
+}
+h1, h2, h3 { line-height: 1.25; margin: 0 0 16px; }
+h1 { font-size: clamp(28px, 4.5vw, 40px); }
+h2 { font-size: clamp(22px, 3.5vw, 30px); margin-top: 8px; }
+h3 { font-size: clamp(18px, 3vw, 22px); }
+p { margin: 0 0 14px; color: var(--text); }
+.muted { color: var(--muted); }
+.grid {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 900px) {
+  .grid-2 { grid-template-columns: 1.2fr 1fr; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ====== NAV ====== */
+.skip { position: absolute; left: -999px; top: -999px; }
+.skip:focus { left: 16px; top: 16px; background: var(--brand); color: #fff; padding: 8px 12px; border-radius: 8px; }
+
+.nav {
+  position: sticky; top: 0; z-index: 40;
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: dark) {
+  .nav { background: rgba(13,17,23,.6); }
+}
+.nav-wrap { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; }
+
+/* Brand with circular image */
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.pill {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--border);
+}
+.menu { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.menu a { padding: 8px 10px; border-radius: 8px; }
+.menu a:hover { background: var(--card); text-decoration: none; }
+.toggle {
+  border: 1px solid var(--border); background: var(--card); border-radius: 999px; padding: 8px 12px;
+  cursor: pointer;
+}
+
+/* ====== HERO ====== */
+.hero { padding: 56px 0 24px; }
+.hero .card { display: grid; gap: 16px; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge {
+  font-size: 12px; padding: 6px 10px; border-radius: 999px;
+  background: linear-gradient(180deg, var(--brand), var(--brand-2)); color: #fff;
+  border: 1px solid rgba(255,255,255,.2);
+}
+
+/* ====== TABLE ====== */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th, td { padding: 12px 10px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { text-align: left; background: rgba(15,98,254,0.06); }
+code { font-family: var(--mono); font-size: 0.95em; background: var(--card); border: 1px solid var(--border); padding: 2px 6px; border-radius: 6px; }
+
+/* ====== ASIDE ====== */
+.aside { border-left: 4px solid var(--brand); padding-left: 14px; color: var(--muted); }
+
+/* ====== FOOTER ====== */
+footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 40px; color: var(--muted); }
+
+/* ====== PRINT (PDF export) ====== */
+@media print {
+    * { color: #000 !important; background: transparent !important; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 9pt; }
+  .nav, .toggle, .print-hide { display: none !important; }
+  body { background: #fff; color: #000; }
+  .card { box-shadow: none; border: 1px solid #ddd; }
+  a { color: #000; text-decoration: underline; }
+  .section { page-break-inside: avoid; }
+  h1 { page-break-before: always; }
+  h1:first-of-type { page-break-before: auto; }
+}
+
+.print-only { display: none; }
+@media print { .print-only { display: block; } }
+
+
+.profile-hero {
+  width: 200px;          /* make it bigger but not too big */
+  height: 200px;
+  border-radius: 50%;    /* keeps it circular */
+  object-fit: cover;     /* crops instead of stretching */
+  margin: 0 auto 20px;
+  display: block;
+  border: 3px solid var(--border);
+  box-shadow: var(--shadow);
+}
