@@ -4,12 +4,12 @@
 :root {
   --bg: #ffffff;
   --text: #101418;
-  --muted: #5b6570;
+  --muted: #5778a9;
   --card: #f7f8fa;
   --brand: #0f62fe;
   --brand-2: #0353e9;
   --border: #e6e8ec;
-  --shadow: 0 10px 30px rgba(16, 20, 24, 0.08);
+  --shadow: 0 10px 30px rgba(227, 232, 238, 0.08);
   --radius: 16px;
   --maxw: 1100px;
   --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
