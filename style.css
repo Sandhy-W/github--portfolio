@@ -204,3 +204,15 @@ footer { padding: 40px 0; border-top: 1px solid var(--border); margin-top: 40px;
   border: 3px solid var(--border);
   box-shadow: var(--shadow);
 }
+
+/* === Mobile fixes (place at END of style.css) === */
+.meta { list-style: none; padding: 0; margin: 6px 0 10px; display: grid; gap: 6px; }
+@media (min-width: 700px) { .meta { grid-template-columns: repeat(3, 1fr); align-items: center; } }
+
+/* Make top menu scroll horizontally instead of wrapping */
+@media (max-width: 640px) {
+  .menu { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+  .menu a, .toggle { flex: 0 0 auto; }   /* prevent shrinking */
+  .profile-hero { width: 140px; height: 140px; }
+  .hero { padding: 32px 0 16px; }
+}
